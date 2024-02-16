@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import logo from '../../images/logo.png';
 import color from '../../styles/color';
 
-const { primary, secondary } = color;
+const { primary, secondary, dark } = color;
 
 const HeaderBox = styled.header`
   background: #fff;
@@ -27,6 +27,27 @@ const HeaderBox = styled.header`
 
     form {
       text-align: center;
+      display: flex;
+
+      button {
+        background: ${dark};
+        border: 0;
+        color: #fff;
+        width: 60px;
+        height: 60px;
+
+        svg {
+            color: #fff;
+            font-size: 2.25rem;
+        }
+      }
+
+       input[type='text'] {
+        flex-grow: 1;
+        height: 60px;
+        border: 2px solid ${dark};
+        padding: 0 15px;
+       }
     }
 
     .links {
@@ -36,13 +57,13 @@ const HeaderBox = styled.header`
         margin-left: 15px;
       }
 
-      svg {
+      .icon {
         font-size: 2.25rem;
         color: ${secondary};
       }
 
       .on {
-        svg {
+        .icon {
             color: ${primary};
         }
       }
@@ -66,12 +87,12 @@ const Header = () => {
           </button>
         </form>
 
-        <div class="links">
+        <div className="links">
         <NavLink to="/member/login" className={({isActive}) => classNames({on:isActive})}>
-            <FiLogIn />
+            <FiLogIn className="icon" />
         </NavLink>
         <NavLink to="/member/join" className={({isActive}) => classNames({on:isActive})}>
-            <FaUserPlus />
+            <FaUserPlus className="icon" />
         </NavLink>
         </div>
       </div>
