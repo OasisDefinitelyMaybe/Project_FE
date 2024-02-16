@@ -1,37 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-import { Helmet } from 'react-helmet-async';
-import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import loadable from '@loadable/component';
+import MainLayout from './layouts/front/MainLayout';
 
-function App() {
-  const { t, i18n } = useTranslation();
-  const changeLanguage = (lang) => i18n.changeLanguage(lang);
+const MainPage = loadable(() => import('./main/pages/MainPage'));
 
+const App = () => {
   return (
-    <div className="App">
-      <Helmet>
-        <title>{t('변경된_제목')}</title>
-      </Helmet>
-      <button type='button' onClick={() => changeLanguage('en')}>English</button>
-      <button type='button' onClick={() => changeLanguage('ko')}>한국어</button>
-      
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Routes>
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<MainPage />} />
+      </Route>
+    </Routes>
+  )
+};
 
 export default App;
