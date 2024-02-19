@@ -16,6 +16,6 @@ export const SubTitle = styled.h2`
   font-size: ${medium}rem;
   line-height: 1;
   font-weight: 700;
-  margin-botton: 15px;
+  margin-bottom: 15px;
   text-align: ${({align}) => align || 'left'};
 `;
