@@ -45,3 +45,8 @@ npm i react-router-dom sass styled-components classnames @loadable/component imm
 # 초기 구성 - src/index.js
 - HelmetProvider
 - BrowserRouter
+
+# 화면 설계
+
+## 메인 페이지
+![메인페이지](https://github.com/OasisDefinitelyMaybe/Project_FE/assets/143994457/8f36f3b3-28d9-423c-b75b-9d30c459f428)
