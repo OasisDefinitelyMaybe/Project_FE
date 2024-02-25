@@ -50,3 +50,6 @@ npm i react-router-dom sass styled-components classnames @loadable/component imm
 
 ## 메인 페이지
 ![메인페이지](https://github.com/OasisDefinitelyMaybe/Project_FE/assets/143994457/8f36f3b3-28d9-423c-b75b-9d30c459f428)
+
+## 이주의데무(게시판) + 로그인 페이지 
+![게시판+로그인](https://github.com/OasisDefinitelyMaybe/Project_FE/assets/143994457/b871d5e5-fee5-48d0-8b05-9db55063eaad)
