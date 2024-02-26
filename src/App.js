@@ -1,8 +1,5 @@
-import { useContext, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { updateMemberInfo } from './member/apis/apiLogin';
 import loadable from '@loadable/component';
-import UserContext from './member/modules/UserContext';
 import MainLayout from './layouts/front/MainLayout';
 
 const MainPage = loadable(() => import('./main/pages/MainPage'));
@@ -22,11 +19,6 @@ const AdminMainPage = loadable(() => import('./admin/pages/MainPage')); // 관�
 /* 관리자 페이지 E */
 
 const App = () => {
-  const userContext = useContext(UserContext);
-  useEffect(() => {
-    updateMemberInfo(userContext);
-  }, []);
-
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
@@ -40,9 +32,9 @@ const App = () => {
         {/* 회원 E */}
 
         {/* 마이페이지 S */}
-         <Route path="mypage/">
-           <Route index element={<MyMainPage />} />
-         </Route>
+        <Route path="mypage/">
+          <Route index element={<MyMainPage />} />
+        </Route>
         {/* 마이페이지 E */}
 
         {/* 관리자 페이지 S */}
@@ -50,7 +42,6 @@ const App = () => {
           <Route index element={<AdminMainPage />} />
         </Route>
         {/* 관리자 페이지 E */}
-
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
