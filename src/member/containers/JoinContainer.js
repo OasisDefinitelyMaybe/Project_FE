@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { apiJoin } from '../apis/apiJoin';
 import JoinForm from '../components/JoinForm';
 
 const JoinContainer = () => {
@@ -10,28 +11,38 @@ const JoinContainer = () => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-
       /* 필수 항목 S */
       const requiredFields = {
         email: t('이메일을_입력하세요.'),
         password: t('비밀번호를_입력하세요'),
-        confirmPassword: t('비밀번호를 확인하세요.'),
+        confirmPassword: t('비밀번호를_확인하세요.'),
         name: t('회원명을_입력하세요.'),
         agree: t('가입약관에_동의하세요.'),
       };
       /* 필수 항목 E */
 
       const _errors = {}; // 검증 실패시 담아주는 에러 객체
+      let hasErrors = false; // 에러 유무
 
       /* 필수 항목 검증 S */
       for (const [key, value] of Object.entries(requiredFields)) {
         _errors[key] = _errors[key] || [];
 
-        const fieldValue = key === 'agree' ? form[key] : (form[key]? form[key].trim() : "");
+        const fieldValue =
+          key === 'agree' ? form[key] : form[key] ? form[key].trim() : '';
 
-        if (!fieldValue) _errors[key].push(value);
+        if (!fieldValue) {
+          _errors[key].push(value);
+          hasErrors = true;
         }
+      }
       /* 필수 항목 검증 E */
+
+      /* 회원가입 요청 처리 S */
+      if (!hasErrors) {
+        apiJoin(form);
+      }
+      /* 회원가입 요청 처리 E */
 
       setErrors(_errors);
     },
