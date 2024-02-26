@@ -54,7 +54,7 @@ const JoinContainer = () => {
             err.messages.global = err.messages.global || [];
             err.messages.global.push(err.message);
           }
-          
+
           if (err.messages) {
             for (const [key, values] of Object.entries(err.messages)) {
               if (values && values.length > 0) {
@@ -68,7 +68,7 @@ const JoinContainer = () => {
       }
       /* 회원가입 요청 처리 E */
     },
-    [t, form],
+    [t, form, navigate],
   );
 
   const onChange = useCallback((e) => {
