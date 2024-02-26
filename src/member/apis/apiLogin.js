@@ -31,3 +31,22 @@ new Promise((resolve, reject) => {
     reject(err);
   });
 });
+
+export const updateMemberInfo = (context) => {
+  apiRequest().then((userInfo) => {
+    const {
+      actions: { setIsLogin, setIsAdmin, setUserInfo },
+    } = context;
+
+    let isLogin = false,
+    isAdmin = false;
+  if (userInfo) {
+    isLogin = true;
+    isAdmin = userInfo.authority === 'ADMIN';
+  }
+
+  setIsLogin(isLogin);
+  setIsAdmin(isAdmin);
+  setUserInfo(userInfo);
+});
+};
