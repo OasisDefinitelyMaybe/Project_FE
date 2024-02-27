@@ -1,25 +1,24 @@
-import axios from "axios";
+import axios from 'axios';
 import cookies from 'react-cookies';
 
 export default function apiRequest(url, method = 'GET', data, headers = {}) {
-    // /member/join -> http://localhost:3001/api/v1/member/join
-    // https://주소/api/....
+  // /member/join -> http://localhost:3001/api/v1/member/join
+  // https://주소/api/....
 
-    if (!url || !url.trim()) return;
+  if (!url || !url.trim()) return;
 
-    if (!/^http[s]?:/i.test(url)) {
+  if (!/^http[s]?:/i.test(url)) {
     url = process.env.REACT_APP_API_URL + url;
-    console.log(url);
   }
 
-  // GET ->키=값&키=값
+  // GET -> ?키=값&키=값
   method = method.toUpperCase();
-  if(method === 'GET' && data) {
+  if (method === 'GET' && data) {
     const params = new URLSearchParams(data);
     url += '?' + params.toString();
     data = null;
   }
-  
+
   const token = cookies.load('token');
   if (token && token.trim()) {
     headers.Authorization = `Bearer ${token}`;
@@ -30,6 +29,6 @@ export default function apiRequest(url, method = 'GET', data, headers = {}) {
     url,
     data,
     headers,
-    ValidateStatus: (state) => state < 500, 
+    validateStatus: (state) => state < 500,
   });
 }
