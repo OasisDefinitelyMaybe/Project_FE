@@ -34,6 +34,9 @@ const MemberListPage = loadable(() =>
 /* 회원관리 E */
 
 /* 게시판 관리 S */
+const BoardListPage = loadable(() =>
+  import('./admin/board/pages/BoardListPage'),
+);
 
 /* 게시판 관리 E */
 
@@ -68,16 +71,20 @@ const App = () => {
         {/* 기본 설정 S */}
         <Route path="config/">
           <Route index element={<BasicConfigPage />} />
-
         </Route>
-        {/* 기본 설정 S */}
+        {/* 기본 설정 E */}
 
         {/* 회원 관리 S */}
         <Route path="member/">
           <Route index element={<MemberListPage />} />
-          
         </Route>
         {/* 회원 관리 E */}
+
+        {/* 게시판 관리 S */}
+        <Route path="board/">
+          <Route index element={<BoardListPage />} />
+        </Route>
+        {/* 게시판 관리 E */}
 
         <Route path="*" element={<NotFound />} />
       </Route>
